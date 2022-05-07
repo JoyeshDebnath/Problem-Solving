@@ -1,0 +1,1 @@
+just find the max difgit in the number u get ur ans .
