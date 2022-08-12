@@ -7,10 +7,7 @@ class Solution {
         
         while(j<popped.length)
         {
-            // if(i<pushed.length){
-            // stack.push(pushed[i]);
-            // i++;
-            // }
+       
             while(i<pushed.length && (stack.isEmpty()|| stack.peek()!=popped[j]))
             {
                 stack.push(pushed[i]);
