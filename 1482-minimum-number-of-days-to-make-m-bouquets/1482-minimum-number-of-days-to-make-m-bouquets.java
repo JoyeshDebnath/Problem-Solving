@@ -17,7 +17,7 @@ class Solution {
 		System.out.println(min + "  "+ max);
 		while(min<max){
 			int mid=min+(max-min)/2;
-			System.out.println("MID"+mid);
+			// System.out.println("MID"+mid);
 			boolean isPossibleToMakeBuoquets=isPossible(BloomDay,mid,k,m);
 			if(isPossibleToMakeBuoquets){
 				
