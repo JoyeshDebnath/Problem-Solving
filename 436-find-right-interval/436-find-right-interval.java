@@ -1,21 +1,21 @@
 public class Solution {
 
-  public int[] binary_search(int[][] intervals, int target, int start, int end) {
-    if (start >= end) {
-      if (intervals[start][0] >= target) {
-        return intervals[start];
-      }
-      return null;
+    public int[] binary_search(int[][] intervals, int target, int start, int end) {
+        if (start >= end) {
+            if (intervals[start][0] >= target) {
+                return intervals[start];
+            }
+            return null;
+        }
+        int mid = (start + end) / 2;
+        if (intervals[mid][0] < target) {
+            return binary_search(intervals, target, mid + 1, end);
+        } else {
+            return binary_search(intervals, target, start, mid);
+        }
     }
-    int mid = (start + end) / 2;
-    if (intervals[mid][0] < target) {
-      return binary_search(intervals, target, mid + 1, end);
-    } else {
-      return binary_search(intervals, target, start, mid);
-    }
-  }
 
-  public int[] findRightInterval(int[][] intervals) {
+    public int[] findRightInterval(int[][] intervals) {
         int[] res = new int[intervals.length];
         HashMap<int[], Integer> hash = new HashMap<>();
         for (int i = 0; i < intervals.length; i++) {
