@@ -1,42 +1,73 @@
 class Solution {
-    public int maximalSquare(char[][] mat) {
+    public int maximalSquare(char[][] matrix) {
+        int m=matrix.length;
+        int n=matrix[0].length;
         
-        int dp[][]=new int[mat.length][mat[0].length];
-           int maxArea=0;
-        for(int i=0;i<mat[0].length;i++)
-        {
-            if(mat[0][i]=='0')
-                dp[0][i]=0;
-            else
-                dp[0][i]=1;
-            
-            maxArea=Math.max(maxArea,dp[0][i]);
-        }
+        int dp[][]=new int[m][n];
         
-        for(int j=0;j<mat.length;j++)
-        {
-            if(mat[j][0]=='0')
-                  dp[j][0]=0;
-            else 
-                 dp[j][0]=1;
-            
-            maxArea=Math.max(maxArea,dp[j][0]);
-        }
+        int maxmArea=Integer.MIN_VALUE;
         
-     
-        for(int i=1;i<mat.length;i++)
+        for(int i=0;i<m;i++)
         {
-            for(int j=1;j<mat[0].length;j++)
-            {
-                 if(mat[i][j]=='0')
+            for(int j=0;j<n;j++){
+                if(i==0)//if the 1st Row 
+                {
+                      // System.out.println("Cell Value="+i+ "   "+j);
+                    if(matrix[i][j]=='0')
                             dp[i][j]=0;
-                 else 
-                     dp[i][j]=Math.min(dp[i-1][j],Math.min(dp[i-1][j-1],dp[i][j-1]))+1;
-           
-                maxArea=Math.max(maxArea,dp[i][j]);
+                    else 
+                          dp[i][j]=1;
+                }//if the 1st Row ...... 
+                
+                else if(j==0)//if the 1st Column 
+                {
+                      // System.out.println("Cell Value="+i+ "   "+j);
+                    
+                      if(matrix[i][j]=='0')
+                             dp[i][j]=0;
+                      else 
+                             dp[i][j]=1;
+                    
+                }//if the 1st Column 
+                
+                else if (i!=0 && j!=0){
+                    if(matrix[i][j]=='0')
+                            dp[i][j]=0;
+                    else{
+                    // System.out.println("Cell Value="+i+ "   "+j);
+                    int topCell=dp[i-1][j];
+                    // System.out.println("Top Cell="+topCell);
+                    int diagonalCell=dp[i-1][j-1];
+                     // System.out.println("Diagonal Cell="+diagonalCell);
+                    int leftCell=dp[i][j-1];
+                     // System.out.println("Left Cell="+leftCell);
+                    
+                    dp[i][j]=1+Math.min(diagonalCell,Math.min(leftCell,topCell));
+                    }
+                }
+                // System.out.println("DP[I][J]="+dp[i][j]);
+                maxmArea=Math.max(maxmArea,dp[i][j]);
             }
         }
+//          System.out.println();
+//         for(char row[]:matrix){
+//             for(char r:row){
+//                 System.out.print(r+"    ");
+//             }
+//             System.out.println();
+//         }
         
-        return maxArea*maxArea;
+        
+        
+        
+        // System.out.println();
+        // for(int row[]:dp){
+        //     for(int r:row){
+        //         System.out.print(r+"    ");
+        //     }
+        //     System.out.println();
+        // }
+     return maxmArea*maxmArea;
+        
     }
 }
