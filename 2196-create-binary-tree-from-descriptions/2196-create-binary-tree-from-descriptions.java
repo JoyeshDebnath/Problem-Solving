@@ -43,18 +43,10 @@ class Solution {
                break;
            }
         }
-        for(int k:map.keySet()){
-            List<int[] > temp=map.get(k);
-            for(int[] a:temp)
-            {
-                System.out.print(k+"   "+a[0]+"    "+a[1] +"  , ");
-            }
-         System.out.println();
-        }
-        System.out.println("Found the Parent!="+Parent);
+       
             
-            return solve(Parent,map);
-        // return new TreeNode(0);
+    return solve(Parent,map);
+    
         
     }
         
@@ -65,10 +57,9 @@ class Solution {
             }
             
             TreeNode root=new TreeNode (Parent);
-            //iterate over the childrens 
-            // for(int KEY:map.keySet()){
+            
                 List<int[]> list=map.get(Parent);//list of (child,direction)
-                System.out.println("Size-"+list.size());
+               
                 
                 for(int[] temp:list){
                     int direction=temp[1];
@@ -79,7 +70,7 @@ class Solution {
                     else
                         root.right=solve(child,map);
                 }
-            // }
+         
             
             return root;
         }
